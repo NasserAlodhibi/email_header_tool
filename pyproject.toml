@@ -1,0 +1,12 @@
+[project]
+name = "email-header-tool"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "geoip2>=5.2.0",
+    "mail-parser>=4.1.4",
+    "plotly>=6.6.0",
+    "streamlit>=1.55.0",
+]
