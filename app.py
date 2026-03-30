@@ -1,6 +1,6 @@
 from parser.header_parser import HeaderParser
+from parser.auth_evaluator import AuthEvaluator
 
-# A small sample header to test with
 sample = """From: attacker@evil.com
 Reply-To: real@gmail.com
 Subject: You won a prize!
@@ -17,22 +17,18 @@ Received: from [10.0.0.1] (unknown)
         by mail.evil.com with SMTP; Mon, 01 Jan 2024 09:59:55 +0000
 """
 
+# Step 1 — parse
 parser = HeaderParser()
-result = parser.parse(sample)
+parsed = parser.parse(sample)
 
-print("=== BASIC FIELDS ===")
-print(f"From:        {result.sender}")
-print(f"Reply-To:    {result.reply_to}")
-print(f"Subject:     {result.subject}")
-print(f"Date:        {result.date}")
-print(f"Message-ID:  {result.message_id}")
-print(f"Return-Path: {result.return_path}")
+# Step 2 — evaluate auth
+evaluator = AuthEvaluator()
+auth_results = evaluator.evaluate(parsed.spf, parsed.dkim, parsed.dmarc)
 
-print("\n=== AUTHENTICATION ===")
-print(f"SPF:   {result.spf}")
-print(f"DKIM:  {result.dkim}")
-print(f"DMARC: {result.dmarc}")
-
-print("\n=== HOP CHAIN ===")
-for i, hop in enumerate(result.received_hops, 1):
-    print(f"Hop {i}: {hop['from']} → {hop['by']}  |  {hop['timestamp']}")
+print("=== AUTHENTICATION EVALUATION ===")
+for auth in auth_results:
+    print(f"\n{auth.protocol}")
+    print(f"  Result:      {auth.result}")
+    print(f"  Status:      {auth.status}")
+    print(f"  Colour:      {auth.colour}")
+    print(f"  Explanation: {auth.explanation}")
