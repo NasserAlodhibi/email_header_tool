@@ -2,6 +2,7 @@ from parser.header_parser import HeaderParser
 from parser.auth_evaluator import AuthEvaluator
 from parser.hop_analyser import HopAnalyser
 from engine.risk_engine import RiskEngine
+from visualisation.hop_chart import build_hop_chart
 
 sample = """From: attacker@evil.com
 Reply-To: real@gmail.com
@@ -19,12 +20,8 @@ Received: from [10.0.0.1] (unknown)
         by mail.evil.com with SMTP; Mon, 01 Jan 2024 09:59:55 +0000
 """
 
-# Full pipeline
 parser = HeaderParser()
 parsed = parser.parse(sample)
-
-evaluator = AuthEvaluator()
-auth_results = evaluator.evaluate(parsed.spf, parsed.dkim, parsed.dmarc)
 
 analyser = HopAnalyser()
 hops = analyser.analyse(parsed.received_hops)
@@ -40,11 +37,12 @@ report = engine.evaluate(
     hops=hops,
 )
 
-print("=== RISK REPORT ===")
-print(f"Level:   {report.level}")
-print(f"Score:   {report.score}/100")
-print(f"Summary: {report.summary}")
-print(f"\nFlags ({len(report.flags)}):")
-for flag in report.flags:
-    print(f"  [{flag.severity.upper()}] {flag.title}")
-    print(f"         {flag.detail}")
+chart = build_hop_chart(hops)
+
+print("=== FULL PIPELINE CHECK ===")
+print(f"Hops parsed:    {len(hops)}")
+print(f"Risk level:     {report.level}")
+print(f"Flags:          {len(report.flags)}")
+print(f"Chart built:    {'Yes' if chart else 'No'}")
+print(f"Chart type:     {type(chart)}")
+print("\nAll systems go." if chart else "\nChart failed.")
