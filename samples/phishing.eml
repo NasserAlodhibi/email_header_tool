@@ -1,0 +1,15 @@
+From: security-alert@paypa1.com
+Reply-To: collect@phish-domain.ru
+Subject: Urgent: Your account has been limited
+Date: Mon, 15 Jan 2024 03:22:11 +0000
+Message-ID: <20240115032211.hack123@paypa1.com>
+Return-Path: <bounce@phish-domain.ru>
+Authentication-Results: mx.google.com;
+       spf=fail (google.com: domain of security-alert@paypa1.com does not designate 185.220.101.45 as permitted sender)
+       dkim=fail header.i=@paypa1.com
+       dmarc=fail (p=REJECT)
+Received: from phish-server.ru (phish-server.ru [185.220.101.45])
+        by mx.google.com with ESMTP; Mon, 15 Jan 2024 03:22:15 +0000
+Received: from [10.8.0.1] (unknown)
+        by phish-server.ru with SMTP; Mon, 15 Jan 2024 03:21:50 +0000
+X-Originating-IP: 185.220.101.45

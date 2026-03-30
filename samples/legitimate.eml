@@ -1,0 +1,15 @@
+From: john.smith@gmail.com
+Reply-To: john.smith@gmail.com
+Subject: Project update for this week
+Date: Tue, 16 Jan 2024 09:15:00 +0000
+Message-ID: <CABxyz123@mail.gmail.com>
+Return-Path: <john.smith@gmail.com>
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of john.smith@gmail.com designates 209.85.220.41 as permitted sender)
+       dkim=pass header.i=@gmail.com header.s=20230601
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE)
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com [209.85.220.41])
+        by mx.google.com with SMTPS; Tue, 16 Jan 2024 09:15:03 +0000
+Received: from [192.168.1.105] (unknown [192.168.1.105])
+        by mail-sor-f41.google.com with SMTP; Tue, 16 Jan 2024 09:14:58 +0000
+X-Originating-IP: 209.85.220.41

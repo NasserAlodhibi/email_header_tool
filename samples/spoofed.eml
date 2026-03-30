@@ -1,0 +1,17 @@
+From: ceo@legitimate-company.com
+Reply-To: ceo@legitimate-company.com
+Subject: Urgent wire transfer needed
+Date: Wed, 17 Jan 2024 11:00:00 +0000
+Message-ID: <spoof789@fakeserver.net>
+Return-Path: <noreply@fakeserver.net>
+Authentication-Results: mx.victim-company.com;
+       spf=softfail (domain of ceo@legitimate-company.com does not designate 91.108.4.1 as permitted sender)
+       dkim=none
+       dmarc=fail (p=QUARANTINE)
+Received: from fakeserver.net (fakeserver.net [91.108.4.1])
+        by mx.victim-company.com with ESMTP; Wed, 17 Jan 2024 11:00:06 +0000
+Received: from [172.16.0.1] (unknown)
+        by fakeserver.net with SMTP; Wed, 17 Jan 2024 10:52:00 +0000
+Received: from [10.0.0.1] (unknown)
+        by internal.fakeserver.net with SMTP; Wed, 17 Jan 2024 10:30:00 +0000
+X-Originating-IP: 91.108.4.1
