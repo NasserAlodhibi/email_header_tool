@@ -1,4 +1,4 @@
-import plotly.graph_objects as go
+import plotly.graph_objects as go # type: ignore
 from typing import Optional
 
 

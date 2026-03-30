@@ -12,9 +12,10 @@ class Hop:
     by_server: Optional[str]
     timestamp: Optional[datetime.datetime]
     timestamp_raw: Optional[str]
-    delay_seconds: Optional[int]   # seconds since previous hop
-    delay_label: Optional[str]     # human-readable e.g. "2 min 15 sec"
-    suspicious: bool = False       # True if delay is unusually long
+    delay_seconds: Optional[int]   
+    delay_label: Optional[str]     
+    suspicious: bool = False   
+    raw: Optional[str] = None     
 
 
 class HopAnalyser:
@@ -40,6 +41,7 @@ class HopAnalyser:
                 delay_seconds=None,
                 delay_label=None,
                 suspicious=False,
+                raw=raw.get("raw"),
             )
             hops.append(hop)
 
