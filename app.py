@@ -1,5 +1,6 @@
 from parser.header_parser import HeaderParser
 from parser.auth_evaluator import AuthEvaluator
+from parser.hop_analyser import HopAnalyser
 
 sample = """From: attacker@evil.com
 Reply-To: real@gmail.com
@@ -17,18 +18,24 @@ Received: from [10.0.0.1] (unknown)
         by mail.evil.com with SMTP; Mon, 01 Jan 2024 09:59:55 +0000
 """
 
-# Step 1 — parse
+# Parse
 parser = HeaderParser()
 parsed = parser.parse(sample)
 
-# Step 2 — evaluate auth
+# Evaluate auth
 evaluator = AuthEvaluator()
 auth_results = evaluator.evaluate(parsed.spf, parsed.dkim, parsed.dmarc)
 
-print("=== AUTHENTICATION EVALUATION ===")
-for auth in auth_results:
-    print(f"\n{auth.protocol}")
-    print(f"  Result:      {auth.result}")
-    print(f"  Status:      {auth.status}")
-    print(f"  Colour:      {auth.colour}")
-    print(f"  Explanation: {auth.explanation}")
+# Analyse hops
+analyser = HopAnalyser()
+hops = analyser.analyse(parsed.received_hops)
+
+print("=== HOP ANALYSIS ===")
+for hop in hops:
+    delay_info = f"  Delay: {hop.delay_label}" if hop.delay_label else "  Delay: (first hop)"
+    suspicious = "  ⚠ SUSPICIOUS DELAY" if hop.suspicious else ""
+    print(f"\nHop {hop.index}")
+    print(f"  From: {hop.from_server}")
+    print(f"  By:   {hop.by_server}")
+    print(f"  Time: {hop.timestamp}")
+    print(delay_info + suspicious)
