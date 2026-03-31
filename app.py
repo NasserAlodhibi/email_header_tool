@@ -39,19 +39,24 @@ def _load_sample(filename: str) -> str:
     """Load a sample header from the samples/ folder."""
     path = os.path.join(os.path.dirname(__file__), "samples", filename)
     try:
-        with open(path, "r") as f:
+        with open(path, "r", encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
         return ""
 
 SAMPLES = {
-    "🎣 Phishing Email": _load_sample("phishing.eml"),
-    "✅ Legitimate Email": _load_sample("legitimate.eml"),
-    "🎭 Spoofed (CEO Fraud)": _load_sample("spoofed.eml"),
+    "Phishing Email":          _load_sample("phishing.eml"),
+    "Legitimate Gmail":         _load_sample("legitimate.eml"),
+    "Spoofed CEO Fraud":        _load_sample("spoofed.eml"),
+    "BEC Fake Invoice":         _load_sample("bec_invoice.eml"),
+    "Fake Password Reset":      _load_sample("fake_password_reset.eml"),
+    "Legitimate Outlook":       _load_sample("legitimate_outlook.eml"),
+    "Newsletter (Legitimate)":  _load_sample("newsletter_legitimate.eml"),
+    "Malware Delivery":         _load_sample("malware_delivery.eml"),
 }
 
 # ── Header ────────────────────────────────────────────────────────
-st.title("🔍 Email Header Analyser")
+st.title("Email Header Analyser")
 st.markdown("Paste a raw email header below to analyse its origin, authentication, and risk level.")
 st.divider()
 
@@ -76,7 +81,7 @@ with col_input:
 st.divider()
 
 # ── Analyse button ────────────────────────────────────────────────
-if st.button("🔎 Analyse Header", type="primary", width="stretch"):
+if st.button("Analyse Header", type="primary", width="stretch"):
     if not header_text.strip():
         st.warning("Please paste an email header or load a sample first.")
     else:
@@ -97,10 +102,10 @@ if st.button("🔎 Analyse Header", type="primary", width="stretch"):
 
         # ── Tabs ──────────────────────────────────────────────────
         tab1, tab2, tab3, tab4 = st.tabs([
-            "📊 Overview",
-            "🗺️ Hop Path",
-            "📋 Raw Fields",
-            "📚 What Does This Mean?",
+            "Overview",
+            "Hop Path",
+            "Raw Fields",
+            "What Does This Mean?",
         ])
 
         # ════════════════════════════════════════════════════════
@@ -155,7 +160,7 @@ if st.button("🔎 Analyse Header", type="primary", width="stretch"):
                     </div>
                     """, unsafe_allow_html=True)
             else:
-                st.success("✅ No suspicious indicators detected.")
+                st.success("No suspicious indicators detected.")
 
             st.markdown("<br>", unsafe_allow_html=True)
 
@@ -194,7 +199,7 @@ if st.button("🔎 Analyse Header", type="primary", width="stretch"):
                 st.markdown("#### Hop Details")
                 for hop in hops:
                     delay_str = f"⏱ {hop.delay_label}" if hop.delay_label else "⏱ First hop"
-                    warn = " ⚠️ Suspicious delay" if hop.suspicious else ""
+                    warn = " Suspicious delay" if hop.suspicious else ""
                     with st.expander(f"Hop {hop.index} — {hop.by_server or 'Unknown server'}{warn}"):
                         st.markdown(f"**From:** `{hop.from_server or 'Unknown'}`")
                         st.markdown(f"**By:** `{hop.by_server or 'Unknown'}`")
@@ -222,7 +227,7 @@ if st.button("🔎 Analyse Header", type="primary", width="stretch"):
         with tab4:
             st.markdown("#### Understanding Email Headers")
 
-            with st.expander("📌 What is an email header?"):
+            with st.expander("What is an email header?"):
                 st.markdown("""
 An email header is a block of metadata prepended to every email message.
 It records the complete journey of the email from sender to recipient,
@@ -234,7 +239,7 @@ in most email clients. To view them you typically need to use
 **Show Original**, **View Source**, or **Message Details** in your email client.
                 """)
 
-            with st.expander("🔐 What is SPF?"):
+            with st.expander("What is SPF?"):
                 st.markdown("""
 **Sender Policy Framework (SPF)** allows a domain owner to publish a list of
 IP addresses that are authorised to send email on behalf of their domain.
@@ -244,13 +249,13 @@ the domain's SPF DNS record.
 
 | Result | Meaning |
 |--------|---------|
-| pass | The server is authorised ✅ |
-| fail | The server is NOT authorised ❌ |
-| softfail | Not authorised but not enforced ⚠️ |
+| pass | The server is authorised |
+| fail | The server is NOT authorised |
+| softfail | Not authorised but not enforced |
 | none | No SPF record exists |
                 """)
 
-            with st.expander("✍️ What is DKIM?"):
+            with st.expander("What is DKIM?"):
                 st.markdown("""
 **DomainKeys Identified Mail (DKIM)** adds a cryptographic digital signature
 to outgoing emails. The recipient's mail server uses the sender's public key
@@ -263,7 +268,7 @@ A **DKIM fail** means the signature is invalid — the message may have been
 tampered with, or forged entirely.
                 """)
 
-            with st.expander("🛡️ What is DMARC?"):
+            with st.expander("What is DMARC?"):
                 st.markdown("""
 **Domain-based Message Authentication, Reporting and Conformance (DMARC)**
 builds on SPF and DKIM by letting domain owners define a *policy* for what
@@ -281,7 +286,7 @@ domain that passed SPF or DKIM.
 A DMARC **pass** is the strongest indicator that an email is legitimate.
                 """)
 
-            with st.expander("🔴 What makes an email suspicious?"):
+            with st.expander("What makes an email suspicious?"):
                 st.markdown("""
 The following are the most common indicators of phishing or spoofing:
 

@@ -1,0 +1,26 @@
+From: cfo@acme-corp.com
+Reply-To: payments@acme-c0rp.com
+Subject: URGENT: Invoice #INV-2024-0892 Payment Required
+Date: Thu, 18 Jan 2024 08:45:00 +0000
+Message-ID: <20240118084500.bec001@fakeserver.net>
+Return-Path: <bounce@acme-c0rp.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Authentication-Results: mx.victim-company.com;
+       spf=softfail (domain of cfo@acme-corp.com does not designate 91.108.56.12 as permitted sender)
+       dkim=none
+       dmarc=fail (p=QUARANTINE sp=QUARANTINE dis=NONE)
+Received-SPF: softfail (mx.victim-company.com: domain of cfo@acme-corp.com does not designate 91.108.56.12 as permitted sender)
+Received: from mail.acme-c0rp.com (acme-c0rp.com [91.108.56.12])
+        by mx.victim-company.com with ESMTP id abc123
+        for <accounts@victim-company.com>;
+        Thu, 18 Jan 2024 08:45:06 +0000
+Received: from [10.20.30.1] (unknown [10.20.30.1])
+        by mail.acme-c0rp.com with SMTP id xyz789;
+        Thu, 18 Jan 2024 08:44:50 +0000
+X-Originating-IP: 91.108.56.12
+X-Mailer: Microsoft Outlook 16.0
+
+Please process the attached invoice immediately. Our banking details have changed.
+New account: Sort code 20-45-67, Account 12345678.
+This is time sensitive - payment must be made today.

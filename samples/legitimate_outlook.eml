@@ -1,0 +1,30 @@
+From: jane.doe@contoso.com
+Reply-To: jane.doe@contoso.com
+Subject: Q1 Planning Meeting - Agenda
+Date: Mon, 22 Jan 2024 09:30:00 +0000
+Message-ID: <LO2P265MB43920B1234567890AB@LO2P265MB4392.GBRP265.PROD.OUTLOOK.COM>
+Return-Path: <jane.doe@contoso.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Authentication-Results: mx.contoso.com;
+       spf=pass (protection.outlook.com: domain of contoso.com designates 40.107.220.50 as permitted sender)
+       dkim=pass (signature was verified) header.d=contoso.com header.s=selector1-contoso-com
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=contoso.com
+Received-SPF: pass (protection.outlook.com: domain of contoso.com designates 40.107.220.50 as permitted sender)
+Received: from GBR01-LO2-obe.outbound.protection.outlook.com (GBR01-LO2-obe.outbound.protection.outlook.com [40.107.220.50])
+        by mx.contoso.com with HTTPS;
+        Mon, 22 Jan 2024 09:30:04 +0000
+Received: from LO2P265MB4392.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:1ab::10)
+        by LO2P265CA0012.outlook.office365.com with HTTPS;
+        Mon, 22 Jan 2024 09:30:01 +0000
+Received: from [192.168.10.22] (unknown [192.168.10.22])
+        by LO2P265MB4392.GBRP265.PROD.OUTLOOK.COM
+        Mon, 22 Jan 2024 09:29:58 +0000
+X-Originating-IP: 40.107.220.50
+X-MS-Exchange-Organization-SCL: -1
+X-MS-Has-Attach: no
+X-Mailer: Microsoft Outlook 16.0
+
+Hi team,
+
+Please find below the agenda for our Q1 planning meeting scheduled for Thursday.

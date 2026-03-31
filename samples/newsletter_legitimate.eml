@@ -1,0 +1,25 @@
+From: newsletter@mailchimp-sends.com
+Reply-To: newsletter@real-company.com
+Subject: Your weekly digest is ready
+Date: Tue, 23 Jan 2024 07:00:00 +0000
+Message-ID: <abc123def456.newsletter@mailchimp-sends.com>
+Return-Path: <bounce-newsletter@mailchimp-sends.com>
+MIME-Version: 1.0
+Content-Type: text/html
+List-Unsubscribe: <mailto:unsubscribe@real-company.com>
+Authentication-Results: mx.recipient.com;
+       spf=pass (domain of mailchimp-sends.com designates 198.2.136.64 as permitted sender)
+       dkim=pass header.i=@mailchimp-sends.com header.s=k1
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=mailchimp-sends.com
+Received-SPF: pass (mx.recipient.com: domain of mailchimp-sends.com designates 198.2.136.64 as permitted sender)
+Received: from mail136-64.atl31.rsgsv.net (mail136-64.atl31.rsgsv.net [198.2.136.64])
+        by mx.recipient.com with ESMTPS id mno678
+        for <subscriber@recipient.com>;
+        Tue, 23 Jan 2024 07:00:03 +0000
+Received: from [10.130.0.200] (unknown [10.130.0.200])
+        by mail136-64.atl31.rsgsv.net with ESMTP id pqr901;
+        Tue, 23 Jan 2024 07:00:01 +0000
+X-Originating-IP: 198.2.136.64
+X-Mailer: MailChimp Mailer
+
+Your weekly digest is ready to read. Click below to view this week's content.
